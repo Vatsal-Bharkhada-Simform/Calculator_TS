@@ -1,4 +1,4 @@
-import calculator from "../modules/calculator.ts";
+import calculator from "../modules/calculator.js";
 
 function handleInsertion(dataType: string | null, data: string | null) : void {
     if (!data || dataType === "utility") return;

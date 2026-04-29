@@ -1,6 +1,6 @@
-import calculator from "../modules/calculator.ts";
-import { operators, parenthesis } from "../modules/operatorReference.ts";
-import { showError } from "./errorHandlers.ts";
+import calculator from "../modules/calculator.js";
+import { operators, parenthesis } from "../modules/operatorReference.js";
+import { showError } from "./errorHandlers.js";
 
 function validateInput(curr: string, str: string) : string {
     // If display has answer and operator is inserted continue the expression else restart new expression.

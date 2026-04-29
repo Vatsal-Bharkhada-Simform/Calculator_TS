@@ -1,4 +1,4 @@
-import calculatorElements from "../domElements/displayElements.ts";
+import calculatorElements from "../domElements/displayElements.js";
 
 function updateHistory(input:string, ans: string) : void {
     let data = localStorage.getItem("historyList");

@@ -1,6 +1,6 @@
-import calculatorElements from "../domElements/displayElements.ts";
-import { showError } from "../utils/errorHandlers.ts"
-import calculator from "./calculator.ts";
+import calculatorElements from "../domElements/displayElements.js";
+import { showError } from "../utils/errorHandlers.js"
+import calculator from "./calculator.js";
 
 const memoryState = {
     memoryContent: 0,

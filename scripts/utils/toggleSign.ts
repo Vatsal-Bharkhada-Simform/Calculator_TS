@@ -1,4 +1,4 @@
-import { getLastElement, wrapLastElement } from "./insertionHelpers.ts";
+import { getLastElement, wrapLastElement } from "./insertionHelpers.js";
 
 function toggleSign(str: string) : string {
     let [lastElement, index] = getLastElement(str);

@@ -1,4 +1,4 @@
-import { handleUnaryOperators } from "../utils/expressionHandlers.ts";
+import { handleUnaryOperators } from "../utils/expressionHandlers.js";
 
 function tokenizeExpression(str: string): string[] {
     const TOKEN_REGEX = /asin|acos|atan|log|sin|cos|tan|ln|²√|³√|π|!|e|\d*\.\d+|\d+|[()+\-*/^%,]/gi;

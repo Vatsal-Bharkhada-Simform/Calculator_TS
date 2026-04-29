@@ -1,11 +1,11 @@
-import { updateDisplay, updatePreview } from "../utils/displayHandlers.ts";
-import { clearError, showError } from "../utils/errorHandlers.ts";
-import { updateHistory } from "../utils/historyHandlers.ts";
-import { validateInput, wrapLastElement } from "../utils/insertionHelpers.ts";
-import toggleSign from "../utils/toggleSign.ts";
-import { evaluate } from "./evaluateExpression.ts";
-import { evaluateUnaryOperators } from "./evaluationFunctions.ts";
-import { specialParenthesis, trigonometricFunctions } from "./operatorReference.ts";
+import { updateDisplay, updatePreview } from "../utils/displayHandlers.js";
+import { clearError, showError } from "../utils/errorHandlers.js";
+import { updateHistory } from "../utils/historyHandlers.js";
+import { validateInput, wrapLastElement } from "../utils/insertionHelpers.js";
+import toggleSign from "../utils/toggleSign.js";
+import { evaluate } from "./evaluateExpression.js";
+import { evaluateUnaryOperators } from "./evaluationFunctions.js";
+import { specialParenthesis, trigonometricFunctions } from "./operatorReference.js";
 
 const calculator = {
     inputString: "",

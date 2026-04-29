@@ -1,9 +1,9 @@
-import calculatorElements from "./domElements/displayElements.ts";
-import calculator from "./modules/calculator.ts";
-import { handleMemoryInput } from "./modules/memory.ts";
-import { operators } from "./modules/operatorReference.ts";
-import { loadHistory } from "./utils/historyHandlers.ts";
-import handleInsertion from "./utils/insertionHandler.ts";
+import calculatorElements from "./domElements/displayElements.js";
+import calculator from "./modules/calculator.js";
+import { handleMemoryInput } from "./modules/memory.js";
+import { operators } from "./modules/operatorReference.js";
+import { loadHistory } from "./utils/historyHandlers.js";
+import handleInsertion from "./utils/insertionHandler.js";
 
 // Load history from localstorage.
 loadHistory();
@@ -24,9 +24,9 @@ calculatorElements.dropdownContainer.addEventListener("click", (e) => {
 });
 
 // Listen user inputs and filter out alphabets
-calculatorElements.display.addEventListener("beforeinput", (e: InputEvent) => {
+calculatorElements.display.addEventListener("input", (e) => {
     if(!e.target) return;
-    if(e.data && (!isNaN(Number(e.data)) || (e.data) in operators || e.data === ".")) {
+    if(e instanceof InputEvent && e.data && (!isNaN(Number(e.data)) || (e.data) in operators || e.data === ".")) {
         calculator.setValue((e.target as HTMLInputElement).value);
     }
     (e.target as HTMLInputElement).value = calculator.inputString.trim();

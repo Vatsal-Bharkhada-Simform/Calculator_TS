@@ -1,4 +1,4 @@
-import calculatorElements from "../domElements/displayElements.ts";
+import calculatorElements from "../domElements/displayElements.js";
 
 function updatePreview(content: string) : void {
     calculatorElements.secondaryScreen.innerText = content;

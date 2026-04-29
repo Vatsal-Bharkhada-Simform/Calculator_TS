@@ -1,7 +1,7 @@
-import { showError } from "../utils/errorHandlers.ts";
-import { evaluateBinaryOperators, evaluateUnaryOperators } from "./evaluationFunctions.ts";
-import { constants, operators } from "./operatorReference.ts";
-import tokenizeExpression from "./tokenizeExpression.ts";
+import { showError } from "../utils/errorHandlers.js";
+import { evaluateBinaryOperators, evaluateUnaryOperators } from "./evaluationFunctions.js";
+import { constants, operators } from "./operatorReference.js";
+import tokenizeExpression from "./tokenizeExpression.js";
 
 function evaluate(str: string): number | undefined {                                                                // Based on the Shunting yard algorithm
     let tokens: string[] = [];

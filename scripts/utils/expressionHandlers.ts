@@ -1,4 +1,4 @@
-import { operators } from "../modules/operatorReference.ts";
+import { operators } from "../modules/operatorReference.js";
 
 function handleUnaryOperators(tokens: string[]) : string[] {
     for(let i = 0 ; i < tokens.length ; i++){
