@@ -14,12 +14,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Vatsal-Bharkhada-Simform/Calculator_TS/issues"
   },
   "homepage": "https://github.com/Vatsal-Bharkhada-Simform/Calculator_TS#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "typescript": "^6.0.3"
   }
 }
