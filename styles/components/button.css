@@ -1,0 +1,90 @@
+.history-toggle,
+.history-delete {
+    border: none;
+    border-radius: var(--rounded-md);
+    background-color: transparent;
+    color: inherit;
+    transition: background-color 0.2s ease;
+    padding: var(--padding-sm);
+
+    &:hover {
+        background-color: var(--color-button-light);
+    }
+}
+
+.calculator-button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: var(--text-sm-md);
+    border-radius: var(--rounded-md);
+    background-color: var(--color-button-light);
+    color: inherit;
+    white-space: nowrap;
+
+    &:hover {
+        filter: brightness(130%);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-text-muted);
+    }
+
+    @media (max-width: 768px) {
+        font-size: var(--text-sm);
+    }
+}
+
+.button-dark {
+    background-color: var(--color-button-dark);
+}
+
+.button-equals {
+    background-color: var(--color-accent);
+    color: var(--background-dark);
+    font-weight: 600;
+
+    &:hover {
+        filter: brightness(80%);
+    }
+}
+
+.button__title-wrapper {
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title-text {
+        font-size: var(--text-sm);
+        display: inline-block;
+        padding: var(--padding-sm);
+    }
+
+    .title-underline {
+        width: 30%;
+        height: 0.4rem;
+        background-color: var(--color-accent);
+        border-radius: var(--rounded-md);
+    }
+}
+
+.button-secondary {
+    border: none;
+    border-radius: var(--rounded-md);
+    background-color: transparent;
+    color: inherit;
+    transition: background-color 0.2s ease;
+    padding: var(--padding-md);
+
+    &:hover {
+        background-color: var(--color-button-light);
+    }
+
+    &:disabled, &:disabled:hover {
+        background-color: transparent;
+        color: var(--color-text-muted);
+    }
+}

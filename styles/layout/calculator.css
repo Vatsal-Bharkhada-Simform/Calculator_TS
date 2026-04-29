@@ -1,0 +1,29 @@
+.calculator__wrapper{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator{
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 650px;
+    padding: var(--padding-sm);
+    margin: 0 var(--padding-sm);
+    border-radius: var(--rounded-md);
+    background-color: var(--background-dark);
+    overflow: hidden;
+
+    .calculator__body{
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .calculator__history{
+        flex: 2;
+    }
+}
