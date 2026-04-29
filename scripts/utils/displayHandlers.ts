@@ -1,10 +1,10 @@
-import calculatorElements from "../domElements/displayElements.js";
+import calculatorElements from "../domElements/displayElements.ts";
 
-function updatePreview(content){
+function updatePreview(content: string) : void {
     calculatorElements.secondaryScreen.innerText = content;
 }
 
-function updateDisplay(content){
+function updateDisplay(content: string) : void {
     calculatorElements.display.value = content;
 }
 
