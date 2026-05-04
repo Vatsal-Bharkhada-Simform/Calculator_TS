@@ -35,7 +35,7 @@ function evaluate(str: string): number | undefined {                            
             }
             hStack.push(token);
         }
-        else if (token !== undefined && String(token) in constants){
+        else if (token && constants[token]){
             oStack.push(Number(constants[token]));
         }
     }
@@ -51,11 +51,19 @@ function evaluate(str: string): number | undefined {                            
         if (!isNaN(Number(token))) result.push(Number(token));
         else {
             if (operators[token]?.operands === 2) {
-                tempAns = evaluateBinaryOperators(String(token), Number(result.pop()), Number(result.pop()));
-                result.push(tempAns);
+                if(result.length >= 2) {
+                    tempAns = evaluateBinaryOperators(String(token), Number(result.pop()), Number(result.pop()));
+                    result.push(tempAns);
+                } else {
+                    throw new SyntaxError("Invalid expression");
+                }
             } else {
-                tempAns = evaluateUnaryOperators(String(token), Number(result.pop()));
-                result.push(tempAns);
+                if(result.length >= 1) {
+                    tempAns = evaluateUnaryOperators(String(token), Number(result.pop()));
+                    result.push(tempAns);
+                } else {
+                    throw new SyntaxError("Invalid expression");
+                }
             }
         }
     }
