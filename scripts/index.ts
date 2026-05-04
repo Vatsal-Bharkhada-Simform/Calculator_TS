@@ -10,16 +10,20 @@ loadHistory();
 
 // Listen for click events on buttons.
 calculatorElements.buttonParent.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
     handleInsertion(
-        (e.target as HTMLElement)?.getAttribute("data-type"), 
-        (e.target as HTMLElement)?.getAttribute("data-display")
+        target.getAttribute("data-type"), 
+        target.getAttribute("data-display")
     );
 });
 
 calculatorElements.dropdownContainer.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
     handleInsertion(
-        (e.target as HTMLElement)?.getAttribute("data-type"), 
-        (e.target as HTMLElement)?.getAttribute("data-display")
+        target.getAttribute("data-type"), 
+        target.getAttribute("data-display")
     );
 });
 
