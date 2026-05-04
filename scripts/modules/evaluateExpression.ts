@@ -17,26 +17,26 @@ function evaluate(str: string): number | undefined {                            
     let result: number[] = [];
     let temp: string = "";
 
-    for (let i = 0; i < tokens.length; i++) {                                           // Convert into Reverse Polish format.
-        if (!isNaN(Number(tokens[i]))) {                                                
-            oStack.push(Number(tokens[i]));
-        } else if (tokens[i] === "(") {
-            hStack.push(tokens[i] ?? "");
-        } else if (tokens[i] === ")") {
+    for(let token in tokens) {                                           // Convert into Reverse Polish format.
+        if (!isNaN(Number(token))) {                                                
+            oStack.push(Number(token));
+        } else if (token === "(") {
+            hStack.push(token);
+        } else if (token === ")") {
             while (hStack.length && hStack.at(-1) !== "(") {
-                oStack.push(hStack.pop() ?? "");
+                oStack.push(String(hStack.pop()));
             }
             hStack.pop();
         }
-        else if (operators[(tokens[i] ?? "")] !== undefined) {
-            while (hStack.length && (Number(operators[hStack.at(-1) ?? ""]?.precedence) >= Number(operators[tokens[i] ?? ""]?.precedence))) {
-                temp = hStack.pop() ?? "";
+        else if (operators[token] !== undefined) {
+            while (hStack.length && (Number(operators[hStack.at(-1) ?? ""]?.precedence) >= Number(operators[token].precedence))) {
+                temp = String(hStack.pop());
                 oStack.push(temp);
             }
-            hStack.push((tokens[i] ?? ""));
+            hStack.push(token);
         }
-        else if (tokens[i] !== undefined && String(tokens[i]) in constants){
-            oStack.push(Number(constants[tokens[i] ?? ""]));
+        else if (token !== undefined && String(token) in constants){
+            oStack.push(Number(constants[token]));
         }
     }
 
@@ -46,21 +46,21 @@ function evaluate(str: string): number | undefined {                            
 
     let tempAns = 0;
 
-    for (let i = 0; i < oStack.length; i++) {                                           // Evaluate the reverse polish notation.
-        if(oStack[i] === undefined) continue;
-        if (!isNaN(Number(oStack[i]))) result.push(Number(oStack[i]) ?? 0);
+    for (let token in oStack) {                                           // Evaluate the reverse polish notation.
+        if(token === undefined) continue;
+        if (!isNaN(Number(token))) result.push(Number(token));
         else {
-            if (operators[oStack[i] ?? ""]?.operands === 2) {
-                tempAns = evaluateBinaryOperators(String(oStack[i]), Number(result.pop()), Number(result.pop()));
+            if (operators[token]?.operands === 2) {
+                tempAns = evaluateBinaryOperators(String(token), Number(result.pop()), Number(result.pop()));
                 result.push(tempAns);
             } else {
-                tempAns = evaluateUnaryOperators(String(oStack[i]), result.pop() ?? 0);
+                tempAns = evaluateUnaryOperators(String(token), Number(result.pop()));
                 result.push(tempAns);
             }
         }
     }
 
-    if(result.length > 1 || isNaN(+(result[0] ?? 0))) throw new SyntaxError("Invalid expression");
+    if(result.length > 1 || isNaN(Number(result[0]))) throw new SyntaxError("Invalid expression");
 
     return result[0];
 }
