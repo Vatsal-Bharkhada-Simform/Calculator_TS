@@ -5,7 +5,7 @@ function updateHistory(input:string, ans: string) : void {
     let items;
 
     calculatorElements.emptyMessage.style.display = "none";
-    items = JSON.parse(data ?? "");
+    items = JSON.parse(data ?? "[]");
 
     let newItem = {
         input,

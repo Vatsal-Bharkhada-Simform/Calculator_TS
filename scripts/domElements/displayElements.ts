@@ -2,7 +2,6 @@ const calculatorElements = {
     display: document.querySelector("#display") as HTMLInputElement,
     secondaryScreen: document.querySelector(".body__secondary-screen") as HTMLElement,
     buttonParent: document.querySelector(".body__buttons") as HTMLElement,
-    previewScreen: document.querySelector(".body__preview") as HTMLElement,
     historyContainer: document.querySelector(".calculator__history") as HTMLElement,
     historyList: document.querySelector(".history__list") as HTMLElement,
     historyToggle: document.querySelector(".history-toggle") as HTMLElement,

@@ -8,7 +8,7 @@ function evaluateUnaryOperators(op: string, a: number | "UM") : number{
         }
     }
     if(a === "UM") {
-        throw new Error("Invlaid expression encountered");
+        throw new Error("Invalid expression encountered");
     }
 
     switch (op) {

@@ -25,7 +25,6 @@ function validateInput(curr: string, str: string) : string {
     // Prevent multiple consecutive decimals and operators 
     if (str === "." && curr.at(-1) === ".") return curr;
     if (!(parenthesis.includes(str)) && (operators[curr.at(-1) ?? ""]?.precedence && operators[str]?.precedence)) {
-        console.log("here");
         return curr.slice(0, -1) + str;
     }
 
