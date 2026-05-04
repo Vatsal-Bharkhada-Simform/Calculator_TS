@@ -12,14 +12,13 @@
     "url": "git+https://github.com/Vatsal-Bharkhada-Simform/Calculator_TS.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vatsal Bharkhada",
   "license": "ISC",
   "type": "module",
   "bugs": {
     "url": "https://github.com/Vatsal-Bharkhada-Simform/Calculator_TS/issues"
   },
   "homepage": "https://github.com/Vatsal-Bharkhada-Simform/Calculator_TS#readme",
-  "dependencies": {},
   "devDependencies": {
     "typescript": "^6.0.3"
   }
