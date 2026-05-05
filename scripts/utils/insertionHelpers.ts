@@ -2,7 +2,7 @@ import calculator from "../modules/calculator.js";
 import { operators, parenthesis } from "../modules/operatorReference.js";
 import { showError } from "./errorHandlers.js";
 
-function validateInput(curr, str) {
+function validateInput(curr: string, str: string) : string {
     // If display has answer and operator is inserted continue the expression else restart new expression.
     if (calculator.displayHasAnswer) {
         calculator.displayHasAnswer = false;
@@ -15,24 +15,23 @@ function validateInput(curr, str) {
         showError("Cannot insert binary operator here");
         return curr;
     } 
-    else if (!isNaN(curr.at(-1)) && str === "("){
+    else if (!isNaN(Number(curr.at(-1))) && str === "("){
         return curr + "*" + str;
     }
-    else if (!isNaN(str) && curr.at(-1) === ")"){
+    else if (!isNaN(Number(str)) && curr.at(-1) === ")"){
         return curr + "*" + str;
     }
 
     // Prevent multiple consecutive decimals and operators 
-    if (str === "." && curr.at(-1) === ".") return false;
-    if (!(parenthesis.includes(str)) && (operators[curr.at(-1)]?.precedence && operators[str]?.precedence)) {
-        console.log("here");
+    if (str === "." && curr.at(-1) === ".") return curr;
+    if (!(parenthesis.includes(str)) && (operators[curr.at(-1) ?? ""]?.precedence && operators[str]?.precedence)) {
         return curr.slice(0, -1) + str;
     }
 
     return curr + str;
 }
 
-function wrapLastElement(str, prefix, suffix) {
+function wrapLastElement(str: string, prefix: string, suffix: string) : string {
     let [, i] = getLastElement(str);
 
     if (prefix) {
@@ -45,10 +44,10 @@ function wrapLastElement(str, prefix, suffix) {
     return str;
 }
 
-function getLastElement(str) {
+function getLastElement(str: string): [string, number] {
     if(str.at(-1) === "("){
         showError("Incomplete expression");
-        return;
+        return ["", -1];
     }
 
     let parenthesisIndex = str.at(-1) === ")" ? 1 : 0;
@@ -65,18 +64,19 @@ function getLastElement(str) {
         }
         if(parenthesisIndex !== 0) {
             showError("Invalid parenthesis");
-            return;
+            return ["", -1];
         }
     } 
     else {
-        while (i >= 0 && (str[i] >= "0" && str[i] <= "9") || str[i] === ".") {
+        while (i >= 0 && str[i] && (((str[i] ?? "") >= "0" && (str[i] ?? "") <= "9") || str[i] === ".")) {
             num = str[i] + num;
             i--;
         }
     }
 
     if (str[i] === "-") {
-        if (i > 0 && (str[i - 1] === "(" || operators[str[i - 1]]?.precedence)) {
+        let prev = str[i-1];
+        if (i > 0 && prev && (prev === "(" || operators[prev]?.precedence)) {
             num = str[i] + num;
             i--;
         } else if (i === 0){
@@ -84,15 +84,15 @@ function getLastElement(str) {
             i--;
         }
     }
-    else if(i >= 0 && isNaN(str[i]) && !operators[str[i]]){
+    else if(i >= 0 && isNaN(Number(str[i])) && !operators[(str[i] ?? "")]){
         let op = "";
-        while(i >= 0 && isNaN(str[i]) && !operators[str[i]]){
+        while(i >= 0 && isNaN(Number(str[i])) && !operators[(str[i] ?? "")]){
             op = str[i] + op;
             i--;
         }
         num = op + num;
     }
-    else if (i >= 0 && operators[str[i]]?.operands === 1){
+    else if (i >= 0 && operators[(str[i] ?? "")]?.operands === 1){
         num = str[i] + num;
         i--;
     }

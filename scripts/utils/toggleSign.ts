@@ -1,7 +1,9 @@
 import { getLastElement, wrapLastElement } from "./insertionHelpers.js";
 
-function toggleSign(str) {
+function toggleSign(str: string) : string {
     let [lastElement, index] = getLastElement(str);
+
+    if(index === -1) return str;
 
     if(lastElement.startsWith("(-")){
         str = str.slice(0, index) + str.slice(index+2, str.length-1);

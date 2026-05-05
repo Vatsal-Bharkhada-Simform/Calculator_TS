@@ -1,11 +1,11 @@
 import calculatorElements from "../domElements/displayElements.js";
 
-function updateHistory(input, ans) {
+function updateHistory(input:string, ans: string) : void {
     let data = localStorage.getItem("historyList");
     let items;
 
     calculatorElements.emptyMessage.style.display = "none";
-    items = JSON.parse(data);
+    items = JSON.parse(data ?? "[]");
 
     let newItem = {
         input,
@@ -23,7 +23,7 @@ function updateHistory(input, ans) {
     let answer = document.createElement("span");
 
     query.innerText = input;
-    answer.innerText = ans;
+    answer.innerText = String(ans);
 
     listItem.append(query, answer);
 
@@ -31,7 +31,7 @@ function updateHistory(input, ans) {
     return;
 }
 
-function loadHistory() {
+function loadHistory() : void {
     let data = localStorage.getItem("historyList");
     if (!data || data === "[]") {
         localStorage.setItem("historyList", "[]");

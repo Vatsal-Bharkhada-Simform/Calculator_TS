@@ -1,6 +1,17 @@
-function evaluateUnaryOperators(op, a) {
+function evaluateUnaryOperators(op: string, a: number | "UM") : number{
+    if(op === "UM") {
+        if(a === "UM"){
+            return 1;
+        } 
+        else {
+            return a * -1;
+        }
+    }
+    if(a === "UM") {
+        throw new Error("Invalid expression encountered");
+    }
+
     switch (op) {
-        case "UM": return (a === "UM") ? 1 : a * -1;
         case "²√": return Math.sqrt(a);
         case "³√": return Math.cbrt(a);
         case "log": return Math.log10(a);
@@ -21,7 +32,7 @@ function evaluateUnaryOperators(op, a) {
     }
 }
 
-function evaluateBinaryOperators(op, b, a) {
+function evaluateBinaryOperators(op: string, b: number, a: number): number {
     switch (op) {
         case "+": return a + b;
         case "-": return a - b;
@@ -34,7 +45,7 @@ function evaluateBinaryOperators(op, b, a) {
     }
 }
 
-function factorial(n) {
+function factorial(n: number): number {
     let ans = 1;
     for (let i = Math.abs(n); i > 0; --i) ans *= i;
     return n > 0 ? ans : -1*ans;

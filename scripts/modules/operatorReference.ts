@@ -1,4 +1,9 @@
-const operators = {
+type OperatorContent = {
+    precedence: number | undefined;
+    operands: number | undefined
+}
+
+const operators: Record<string, OperatorContent> = {
     "+": {
         precedence: 1,
         operands: 2,
@@ -83,21 +88,22 @@ const operators = {
         precedence: undefined,
         operands: undefined,
     },
-}
+} as const;
 
-const constants = {
+const constants: Record<string, number> = {
     "e" : Math.E,
     "π" : Math.PI,
-}
-const parenthesis = ["(", ")", "|"];
+} as const;
 
-const trigonometricFunctions = ["sin", "cos", "tan", "asin", "acos", "atan"];
+const parenthesis: string[] = ["(", ")", "|"];
 
-const specialParenthesis = {
+const trigonometricFunctions: string[] = ["sin", "cos", "tan", "asin", "acos", "atan"];
+
+const specialParenthesis: Record<string, string[]> = {
     "round" : ["|", "|"], 
     "abs" : ["|", "|"], 
     "ceil" : ["⎡", "⎤"], 
     "floor" : ["⎣", "⎦"]
-};
+} as const;
 
 export {operators, constants, parenthesis, trigonometricFunctions, specialParenthesis};

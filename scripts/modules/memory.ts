@@ -4,46 +4,46 @@ import calculator from "./calculator.js";
 
 const memoryState = {
     memoryContent: 0,
-    incrementMemory(value) {
+    incrementMemory(value: string) : void {
         if (this.isInvalidValue(value)) return;
         this.enableMemoryButtons();
         this.memoryContent += (+value);
     },
-    decrementMemory(value) {
+    decrementMemory(value: string) : void {
         if (this.isInvalidValue(value)) return;
         this.enableMemoryButtons();
         this.memoryContent -= (+value);
     },
-    saveToMemory(value) {
+    saveToMemory(value: string) : void {
         if (this.isInvalidValue(value)) return;
         this.enableMemoryButtons();
         this.memoryContent = (+value);
     },
-    injectMemoryValue() {
-        calculator.updateString(this.memoryContent);
+    injectMemoryValue() : void {
+        calculator.updateString(String(this.memoryContent));
     },
-    clearMemory() {
+    clearMemory() : void {
         this.disableMemoryButtons();
         this.memoryContent = 0;
     },
-    isInvalidValue(value) {
+    isInvalidValue(value: string) : boolean {
         if (isNaN(+value)) {
             showError("Invalid value");
             return true;
         }
         return false;
     },
-    disableMemoryButtons(){
-        calculatorElements.memoryClear.setAttribute("disabled", true);
-        calculatorElements.memoryRead.setAttribute("disabled", true);
+    disableMemoryButtons() : void {
+        calculatorElements.memoryClear.setAttribute("disabled", "true");
+        calculatorElements.memoryRead.setAttribute("disabled", "true");
     },
-    enableMemoryButtons(){
+    enableMemoryButtons() : void {
         calculatorElements.memoryClear.removeAttribute("disabled");
         calculatorElements.memoryRead.removeAttribute("disabled");
     },
 }
 
-function handleMemoryInput(type){
+function handleMemoryInput(type: string) : void {
     switch (type) {
         case "M+":
             memoryState.incrementMemory(calculator.inputString);

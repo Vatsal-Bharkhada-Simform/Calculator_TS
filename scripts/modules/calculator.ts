@@ -13,27 +13,25 @@ const calculator = {
     useRadian: false,
     showScientificNotation: false,
     historyShown: false,
-    setValue(str) {
+    setValue(str: string) : void {
         clearError();
-        // if(!isValidInput(str.at(-1))) return;
 
-        this.inputString = validateInput(this.inputString, str.at(-1));
+        this.inputString = validateInput(this.inputString, str.at(-1) ?? "");
         updateDisplay(this.inputString);
     },
-    updateString(str) {
+    updateString(str: string) : void {
         clearError();
-        // if(!isValidInput(str)) return;
         
         this.inputString = validateInput(this.inputString, str);
         updateDisplay(this.inputString);
     },
-    handleFunction(func) {
-        let hasParenthesis = func.includes("(") && this.inputString;
-        this.inputString = wrapLastElement(this.inputString, func, hasParenthesis && ")");
+    handleFunction(func: string) : void {
+        let hasParenthesis = func.includes("(") && this.inputString !== "";
+        this.inputString = wrapLastElement(this.inputString, func, hasParenthesis ? ")" : "");
         updateDisplay(this.inputString);
     },
-    handlePostFunction(func){
-        if (this.inputString === "") return;
+    handlePostFunction(func: string) : void {
+        if (this.inputString === "" || !func) return;
         try {
             let ans = evaluate(this.inputString);
             if (ans !== undefined) {
@@ -41,7 +39,7 @@ const calculator = {
                     this.inputString = func + "(" + this.inputString + ")";
                     ans = this.evaluateTrigonometricFunction(func, ans);
                 } else {
-                    this.inputString = specialParenthesis[func][0] + this.inputString + specialParenthesis[func][1];
+                    this.inputString = specialParenthesis[func]?.[0] + this.inputString + specialParenthesis[func]?.[1];
                     ans = evaluateUnaryOperators(func, ans);
                 }
 
@@ -52,15 +50,15 @@ const calculator = {
                 }
             }
         } catch (err) {
-            showError(err.message);
+            showError((err as Error).message);
         }
     },
-    handleSignToggle() {
+    handleSignToggle() : void {
         if(!this.inputString) return;
         this.inputString = toggleSign(this.inputString);
         updateDisplay(this.inputString);
     },
-    handleAction(action) {
+    handleAction(action: string) : void {
         clearError();
 
         switch (action){
@@ -83,7 +81,7 @@ const calculator = {
                 break;
         }
     },
-    calculateAnswer() {
+    calculateAnswer() : void {
         if (this.inputString === "") return;
         try {
             let ans = evaluate(this.inputString);
@@ -91,31 +89,32 @@ const calculator = {
                 this.handleDisplayAnswer(ans);
             }
         } catch (err) {
-            showError(err.message);
+            showError((err as Error).message);
         }
     },
-    toggleUseRadian(elem){
+    toggleUseRadian(elem: HTMLElement) : void {
         this.useRadian = !this.useRadian;
         elem.innerText = (elem.innerText === "DEG") ? "RAD" : "DEG";
         elem.setAttribute("title", (`Using ${(elem.innerText === "DEG") ? "degrees" : "radians"}`));
     },
-    evaluateTrigonometricFunction(func, ans){
+    evaluateTrigonometricFunction(func: string, ans: number): number{
         if(!this.useRadian){
             ans = (ans / (180 / Math.PI));
         }
         return evaluateUnaryOperators(func, ans);
     },
-    toggleNotation(elem){
+    toggleNotation(elem: HTMLElement) : void {
         this.showScientificNotation = !this.showScientificNotation;
         elem.innerText = (elem.innerText === "F" ? "E" : "F");
         elem.setAttribute("title", (`Showing answer in ${(elem.innerText === "F") ? "regular" : "scientific"} notation`));
     },
-    handleDisplayAnswer(ans){
+    handleDisplayAnswer(ans: number) : void {
+        let convertedAns: string = String(ans);
         if(this.showScientificNotation){
-            ans = Number(ans).toExponential();
+            convertedAns = Number(ans).toExponential();
         }
-        updateHistory(this.inputString, ans);
-        updateDisplay(ans);
+        updateHistory(this.inputString, convertedAns);
+        updateDisplay(convertedAns);
         updatePreview(this.inputString);
 
         this.displayHasAnswer = true;

@@ -1,6 +1,6 @@
 import calculator from "../modules/calculator.js";
 
-function handleInsertion(dataType, data) {
+function handleInsertion(dataType: string | null, data: string | null) : void {
     if (!data || dataType === "utility") return;
     
     switch(dataType){
@@ -14,7 +14,7 @@ function handleInsertion(dataType, data) {
             calculator.handlePostFunction(data);
             break;
         case "sign-toggle":
-            calculator.handleSignToggle(data);
+            calculator.handleSignToggle();
             break;
         case "random":
             calculator.updateString(String(Math.round(Math.random()*100)/100));
